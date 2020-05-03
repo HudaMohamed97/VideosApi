@@ -1,8 +1,11 @@
 package com.huda.videosapi
 
+import android.app.PendingIntent.getActivity
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -62,8 +65,14 @@ open class MainActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+       // this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+       // window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_main)
         youtube_view.initialize("AIzaSyD3YZnVeXC-oq28vugcH2hukUaYoTYSB4E", this)
+        button.setOnClickListener {
+            Toast.makeText(this, "please Choose filter Type", Toast.LENGTH_SHORT).show()
+
+        }
 
     }
 
@@ -82,9 +91,12 @@ open class MainActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedList
         // val youTubePlayer = player
         player?.setPlayerStateChangeListener(myPlayerStateChangeListener)
         player?.setPlaybackEventListener(myPlaybackEventListener)
+        //player?.addFullscreenControlFlag(YouTubePlayer.FULLSCREEN_FLAG_CUSTOM_LAYOUT)
+
 
         if (!p2) {
-            player?.cueVideo("fhWaJi1Hsfo") // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
+            // player?.cueVideo("fhWaJi1Hsfo") // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
+            player?.loadVideo("fhWaJi1Hsfo")
         }
     }
 
